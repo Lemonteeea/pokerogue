@@ -216,8 +216,9 @@ export function executeIf<T>(condition: boolean, promiseFunc: () => Promise<T>):
 
 export const sessionIdKey = 'pokerogue_sessionId';
 export const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '';
-export const serverUrl = isLocal ? 'http://localhost:8001' : '';
-export const apiUrl = isLocal ? serverUrl : 'https://api.pokerogue.net';
+export const serverUrl = 'api';
+export const apiUrl = serverUrl;
+export const fallbackApiUrl = isLocal ? serverUrl : 'api';
 
 export function setCookie(cName: string, cValue: string): void {
   const expiration = new Date();

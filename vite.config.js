@@ -4,7 +4,15 @@ import { defineConfig } from 'vite';
 export default defineConfig(({ mode }) => {
 	return {
 		plugins: [/*fs()*/],
-		server: { host: '0.0.0.0', port: 8000 },
+		server: { host: '0.0.0.0', port: 8000,
+			proxy: {
+				'/api': {
+					target: 'https://api.pokerogue.net',
+					changeOrigin: true,
+					rewrite: path => path.replace(/^\/api/, '')
+				}
+			}
+		 },
 		clearScreen: false,
 		build: {
 			minify: 'esbuild',
